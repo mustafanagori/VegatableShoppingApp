@@ -24,7 +24,7 @@ class Navigation extends StatelessWidget {
           },
           child: IndexedStack(
             index: bottomNavigationContoller.selectedIndex.value,
-            children: const [
+            children: [
               HomeView(),
               OrderView(),
               ProfileView(),
