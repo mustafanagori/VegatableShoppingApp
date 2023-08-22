@@ -79,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             Text(
                               "Name: ${vegitable[index]}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.black45,
                                   fontWeight: FontWeight.w500),

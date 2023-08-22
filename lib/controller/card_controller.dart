@@ -43,6 +43,12 @@ class CartController extends GetxController {
     }
   }
 
+  // Method to clear the cart
+  void clearCart() {
+    cart.clear();
+    update(); // Notify listeners that the cart has been updated
+  }
+
   void updateTotalAmount() {
     // Recalculate the total amount
     double newTotal =

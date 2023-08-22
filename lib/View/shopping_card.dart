@@ -150,6 +150,7 @@ class ShoppingCartScreen extends StatelessWidget {
                           children: [
                             TextButton(
                                 onPressed: () {
+                                  cartController.clearCart();
                                   Get.to(Navigation());
                                   Get.snackbar(
                                       "Order !", "Order has been place");
