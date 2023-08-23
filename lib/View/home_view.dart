@@ -40,7 +40,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> cartProducts = cartController.cart;
     final List<Product> products = List.generate(vegitable.length, (index) {
       return Product(
         id: UniqueKey().hashCode,
@@ -108,8 +107,8 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            final productIndex = index;
-                            final product = products[productIndex];
+                            //final productIndex = index;
+                            final product = products[index];
 
                             if (cartController.cart.isEmpty ||
                                 !cartController.cart

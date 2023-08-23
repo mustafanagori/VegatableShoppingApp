@@ -2,7 +2,7 @@ class Product {
   final int id;
   final String name;
   final double price;
-  int quantity; // Add quantity property
+  int quantity;
   final String img;
 
   Product({
@@ -10,6 +10,6 @@ class Product {
     required this.name,
     required this.price,
     required this.img,
-    this.quantity = 1, // Initialize quantity to 1
+    this.quantity = 1,
   });
 }

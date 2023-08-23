@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vegitable/View/loginview/login.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -254,6 +255,7 @@ class ProfileView extends StatelessWidget {
                       ),
                       onPressed: () {
                         Get.snackbar("sucessfully", "Logout");
+                        Get.to(Login());
                       },
                       child: const Text(
                         "Logout",
