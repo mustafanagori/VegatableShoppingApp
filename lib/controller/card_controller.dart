@@ -43,10 +43,9 @@ class CartController extends GetxController {
     }
   }
 
-  // Method to clear the cart
   void clearCart() {
     cart.clear();
-    update(); // Notify listeners that the cart has been updated
+    update();
   }
 
   void updateTotalAmount() {
@@ -55,9 +54,4 @@ class CartController extends GetxController {
         cart.fold(0, (sum, product) => sum + product.price * product.quantity);
     totalAmount.value = newTotal;
   }
-
-  // void total(int qty, int price) {
-  //   RxInt a = (qty * price).obs;
-  //   print(a);
-  // }
 }

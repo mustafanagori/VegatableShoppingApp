@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vegitable/View/loginview/signup.dart';
-import 'package:vegitable/View/navigation.dart';
+import 'package:vegitable/View/others/signup.dart';
+import 'package:vegitable/controller/login_controller.dart';
+
+import 'navigation.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
+  LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -149,6 +152,7 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           onPressed: () {
+                            loginController.loginWithEmail();
                             Get.to(Navigation());
                             Get.snackbar("sucessfully", "Login");
                           },

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vegitable/View/home_view.dart';
-import 'package:vegitable/View/order_view.dart';
-import 'package:vegitable/View/profile.view.dart';
+import 'package:vegitable/View/customer/home_view.dart';
+import 'package:vegitable/View/customer/order_view.dart';
+import 'package:vegitable/View/others/profile.view.dart';
 
-import '../controller/navigation.dart';
+import '../../controller/navigation.dart';
 
 class Navigation extends StatelessWidget {
   Navigation({super.key});

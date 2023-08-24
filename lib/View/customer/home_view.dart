@@ -1,10 +1,10 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vegitable/View/shopping_card.dart';
+import 'package:vegitable/View/customer/shopping_card.dart';
 
-import '../controller/card_controller.dart';
-import '../model/product_model.dart';
+import '../../controller/card_controller.dart';
+import '../../model/product_model.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({super.key});

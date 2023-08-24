@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/registration_controller.dart';
 import 'login.dart';
 
 // import 'model.dart';
@@ -22,11 +23,11 @@ class _SignUpState extends State<SignUp> {
   bool confrimPass = false;
   final _formkey = GlobalKey<FormState>();
 
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpassController = TextEditingController();
-  final TextEditingController name = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController mobile = TextEditingController();
+  // final TextEditingController passwordController = TextEditingController();
+  // final TextEditingController confirmpassController = TextEditingController();
+  // final TextEditingController name = TextEditingController();
+  // final TextEditingController emailController = TextEditingController();
+  // final TextEditingController mobile = TextEditingController();
   bool _isObscure = true;
   File? file;
   var options = [
@@ -35,6 +36,8 @@ class _SignUpState extends State<SignUp> {
   ];
 
   var rool = "customer";
+  RegistrationController registrationController =
+      Get.put(RegistrationController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,43 @@ class _SignUpState extends State<SignUp> {
                                     MediaQuery.of(context).size.height * 0.12,
                               ),
                               TextFormField(
-                                controller: emailController,
+                                controller:
+                                    registrationController.nameController,
+                                decoration: InputDecoration(
+                                  suffixIcon: const Icon(Icons.person),
+                                  hintText: 'Name ',
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 16.0, bottom: 8.0, top: 8.0),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Colors.deepPurpleAccent),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Colors.deepPurpleAccent),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.transparent,
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Email cannot be empty";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onChanged: (value) {},
+                                keyboardType: TextInputType.emailAddress,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
+                              ),
+                              TextFormField(
+                                controller:
+                                    registrationController.emailController,
                                 decoration: InputDecoration(
                                   suffixIcon: const Icon(Icons.mail),
                                   hintText: 'Email',
@@ -131,7 +170,8 @@ class _SignUpState extends State<SignUp> {
                               ),
                               TextFormField(
                                 obscureText: _isObscure,
-                                controller: passwordController,
+                                controller:
+                                    registrationController.passwordController,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.transparent,
@@ -181,7 +221,8 @@ class _SignUpState extends State<SignUp> {
                               ),
                               TextFormField(
                                 obscureText: _isObscure,
-                                controller: confirmpassController,
+                                controller: registrationController
+                                    .confirmPasswordController,
                                 decoration: InputDecoration(
                                   suffixIcon: IconButton(
                                       icon: Icon(
@@ -213,8 +254,12 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                                 validator: (value) {
-                                  if (confirmpassController.text !=
-                                      passwordController.text) {
+                                  if (registrationController
+                                          .confirmPasswordController.text
+                                          .trim() !=
+                                      registrationController
+                                          .passwordController.text
+                                          .trim()) {
                                     return "Password did not match";
                                   } else {
                                     return null;
@@ -236,7 +281,7 @@ class _SignUpState extends State<SignUp> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   MaterialButton(
-                                    shape: RoundedRectangleBorder(
+                                    shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(20.0))),
                                     elevation: 5.0,
@@ -273,8 +318,10 @@ class _SignUpState extends State<SignUp> {
                                         setState(() {
                                           showProgress = true;
                                         });
-                                        Get.snackbar("Sucessfully", "Registed");
-                                        Get.to(Login());
+                                        registrationController
+                                            .registerWithEmail();
+                                        // Get.snackbar("Sucessfully", "Registed");
+                                        //  Get.to(Login());
                                       },
                                       color: Colors.deepPurpleAccent,
                                       padding: const EdgeInsets.symmetric(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/card_controller.dart';
-import 'navigation.dart';
+import '../../controller/card_controller.dart';
+import '../others/navigation.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
   final CartController cartController = Get.find();

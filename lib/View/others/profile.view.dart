@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vegitable/View/loginview/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vegitable/View/others/login.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class ProfileView extends StatefulWidget {
+  ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -240,9 +248,32 @@ class ProfileView extends StatelessWidget {
                 ],
               ),
               const Divider(),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    child: Text(
+                      "Token: ",
+                      style: TextStyle(color: Colors.grey, fontSize: 20),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          final SharedPreferences? prefs = await _prefs;
+                          // print(prefs?.get('token'));
+                          var t = prefs?.get('token');
+                          Get.snackbar("Token ", "$t");
+                        },
+                        child: const Text("Print Token")),
+                  ),
+                ],
+              ),
 
               // button
-              SizedBox(height: h * 0.15),
+              SizedBox(height: h * 0.10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -253,7 +284,10 @@ class ProfileView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+                        final SharedPreferences? prefs = await _prefs;
+                        prefs?.clear();
+
                         Get.snackbar("sucessfully", "Logout");
                         Get.to(Login());
                       },
