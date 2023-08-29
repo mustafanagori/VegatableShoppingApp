@@ -40,25 +40,39 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> products = List.generate(vegitable.length, (index) {
-      return Product(
+    // final List<Product> products = List.generate(vegitable.length, (index) {
+    //   return Product(
+    //     id: UniqueKey().hashCode,
+    //     name: vegitable[index],
+    //     price: price[index].toDouble(),
+    //     img: img[index],
+    //   );
+    // });
+    // both code are same
+    final List<Product> products = [];
+
+    for (int index = 0; index < vegitable.length; index++) {
+      Product product = Product(
         id: UniqueKey().hashCode,
         name: vegitable[index],
         price: price[index].toDouble(),
         img: img[index],
       );
-    });
+      products.add(product);
+    }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text("Vegetable"),
+        actions: [],
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: vegitable.length,
+              itemCount: products.length,
               itemBuilder: (context, index) {
                 return Card(
                   child: Row(
@@ -88,7 +102,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Text(
                               "Price: \$${price[index]}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.black45,
                                   fontWeight: FontWeight.w500),

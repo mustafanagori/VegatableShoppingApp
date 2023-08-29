@@ -8,6 +8,7 @@ import '../model/order_model.dart';
 
 class OrderController extends GetxController {
   List<OrderModel> orders = []; // List to hold orders
+  double totalPrice = 0.0;
   int count = 1;
   // void inc(value) {
   //   count++;
@@ -33,6 +34,7 @@ class OrderController extends GetxController {
       print("title ${orders[index].title}");
       print("quntity ${orders[index].count}");
       print("id ${orders[index].id}");
+
       update();
     }
   }
@@ -51,9 +53,10 @@ class OrderController extends GetxController {
       } else {
         Get.snackbar("Error", "Request faild ${response.statusCode}");
       }
+      update();
     } catch (e) {
       Get.defaultDialog(
-        title: "Api Hit Error ",
+        title: "Unable ",
         content: Column(
           children: [
             Text(e.toString()),

@@ -21,6 +21,7 @@ class CartController extends GetxController {
       existingProduct.quantity++;
     }
     updateTotalAmount();
+    print(cart.length);
   }
 
   void removeFromCart(int productId) {

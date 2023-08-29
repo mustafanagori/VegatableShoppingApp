@@ -15,18 +15,16 @@ class OrderView extends StatefulWidget {
 
 class _OrderViewState extends State<OrderView> {
   OrderController orderController = Get.put(OrderController());
+  @override
+  void initState() {
+    super.initState();
+    orderController.getdata();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // actions: [
-          //   IconButton(
-          //       onPressed: () {
-          //         orderController.getdata();
-          //       },
-          //       icon: const Icon(Icons.refresh))
-          // ],
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text("Order Details"),
@@ -114,19 +112,54 @@ class _OrderViewState extends State<OrderView> {
                     ),
                     Spacer(),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20))),
-                          onPressed: () {
-                            Get.snackbar("Sucessfully", "Order has been place");
-                          },
-                          child: const Text(
-                            "Order!",
-                            style: TextStyle(fontSize: 18),
-                          )),
-                    )
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                backgroundColor:
+                                    Color.fromARGB(255, 34, 124, 37)),
+                            onPressed: () {
+                              Get.defaultDialog(
+                                  title: "Are you sure ? ",
+                                  content: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.snackbar("Order !",
+                                                "Order has been place");
+                                          },
+                                          child: const Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                                color: Colors.deepPurple,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: const Text(
+                                            "No",
+                                            style: TextStyle(
+                                                color: Colors.deepPurple,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ))
+                                    ],
+                                  ),
+                                  titleStyle: const TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold));
+                            },
+                            child: const Text(
+                              "Order Now !",
+                              style: TextStyle(fontSize: 18),
+                            )))
                   ],
                 )),
           ],
